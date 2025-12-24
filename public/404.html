@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cohort Task Flow</title>
+    <script>
+      // Redirect to index.html for GitHub Pages
+      // This ensures React Router works correctly
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      var basePath = '/cohort-task-flow-main/';
+      l.replace(
+        l.protocol +
+          '//' +
+          l.hostname +
+          (l.port ? ':' + l.port : '') +
+          basePath +
+          'index.html' +
+          l.hash
+      );
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
+
