@@ -18,8 +18,8 @@ export type MetricType =
   | 'Tasks accepted'
   | 'Total time taken'
   | 'Avg. handling time'
-  | 'Accuracy rate'
-  | 'Rejection rate';
+  | 'Review Acceptance Rate'
+  | 'QC Pass Rate';
 
 export type OperatorType = 
   | 'is Greater than (>)'
@@ -33,9 +33,15 @@ export type LogicalOperator = 'AND' | 'OR';
 export interface CohortCondition {
   id: string;
   metric: MetricType;
-  operator: OperatorType;
-  value: string; // Can be a number or percentile like "P5"
+  operator: OperatorType; // Same operators for both absolute and percentile
+  value: string; // Number for absolute, percentile notation (P5, P25, P95, etc.) for percentile
   usePercentile: boolean;
+}
+
+export interface ConditionGroup {
+  id: string;
+  operator: LogicalOperator; // AND or OR (within group)
+  conditions: CohortCondition[];
 }
 
 export interface CohortFormData {
@@ -43,8 +49,8 @@ export interface CohortFormData {
   description: string;
   dateRange: string;
   workflowStep: string;
-  conditions: CohortCondition[];
-  logicalOperators: LogicalOperator[]; // Between conditions
+  conditionGroups: ConditionGroup[]; // Replace conditions + logicalOperators
+  groupConnector: LogicalOperator; // Operator between groups
 }
 
 export interface LinkedCohort {

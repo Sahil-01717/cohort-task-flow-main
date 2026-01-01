@@ -91,46 +91,46 @@ export function CohortSelector({
 
             return (
               <div
-                key={cohort.id}
-                className={cn(
+              key={cohort.id}
+              className={cn(
                   'rounded-lg border transition-all',
                   isExpanded
                     ? 'border-primary/50 bg-accent/50'
                     : 'border-border bg-card hover:border-primary/30'
-                )}
+              )}
               >
                 <button
                   onClick={() => handleCohortClick(cohort.id)}
                   className="w-full p-3 text-left"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-foreground truncate">
-                        {cohort.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground mt-0.5 line-clamp-1">
-                        {cohort.description}
-                      </p>
-                      <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Users className="w-3 h-3" />
-                          <span>{cohort.memberCount} {cohort.memberType}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          <span>{cohort.dateRange}</span>
-                        </div>
-                      </div>
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-medium text-foreground truncate">
+                    {cohort.name}
+                  </h4>
+                  <p className="text-sm text-muted-foreground mt-0.5 line-clamp-1">
+                    {cohort.description}
+                  </p>
+                  <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <Users className="w-3 h-3" />
+                      <span>{cohort.memberCount} {cohort.memberType}</span>
                     </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      <span>{cohort.dateRange}</span>
+                    </div>
+                  </div>
+                </div>
                     <div className="flex-shrink-0">
                       {isExpanded ? (
                         <X className="w-4 h-4 text-muted-foreground" />
                       ) : (
                         <Plus className="w-4 h-4 text-primary" />
-                      )}
-                    </div>
-                  </div>
-                </button>
+                  )}
+                </div>
+              </div>
+            </button>
 
                 {isExpanded && (
                   <div className="px-3 pb-3 pt-0 border-t border-border mt-2">

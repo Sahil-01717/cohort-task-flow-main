@@ -9,6 +9,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 27.8,
     tasksRejected: 5,
     tasksAccepted: 38,
+    reviewAcceptanceRate: 84.4, // For Maker step
+    qcPassRate: 92.1, // For Reviewer step
   },
   {
     email: 'gwenstacy@example.com',
@@ -18,6 +20,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 25.8,
     tasksRejected: 3,
     tasksAccepted: 34,
+    reviewAcceptanceRate: 89.5,
+    qcPassRate: 94.7,
   },
   {
     email: 'peterparker@example.com',
@@ -27,6 +31,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 27.3,
     tasksRejected: 7,
     tasksAccepted: 42,
+    reviewAcceptanceRate: 80.8,
+    qcPassRate: 88.5,
   },
   {
     email: 'brucewayne@example.com',
@@ -36,6 +42,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 26.8,
     tasksRejected: 4,
     tasksAccepted: 37,
+    reviewAcceptanceRate: 90.2,
+    qcPassRate: 95.1,
   },
   {
     email: 'clarkkent@example.com',
@@ -45,6 +53,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 27.1,
     tasksRejected: 6,
     tasksAccepted: 40,
+    reviewAcceptanceRate: 83.3,
+    qcPassRate: 91.7,
   },
   {
     email: 'diana.prince@example.com',
@@ -54,6 +64,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 26.7,
     tasksRejected: 5,
     tasksAccepted: 37,
+    reviewAcceptanceRate: 86.0,
+    qcPassRate: 93.0,
   },
   {
     email: 'tonystark@example.com',
@@ -63,6 +75,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 27.6,
     tasksRejected: 8,
     tasksAccepted: 38,
+    reviewAcceptanceRate: 76.0,
+    qcPassRate: 84.2,
   },
   {
     email: 'natasharomanoff@example.com',
@@ -72,6 +86,8 @@ export const mockUserPerformance: UserPerformance[] = [
     avgHandlingTime: 26.2,
     tasksRejected: 3,
     tasksAccepted: 35,
+    reviewAcceptanceRate: 89.7,
+    qcPassRate: 96.2,
   },
 ];
 

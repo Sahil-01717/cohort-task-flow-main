@@ -6,6 +6,8 @@ export interface UserPerformance {
   avgHandlingTime: number; // in minutes
   tasksRejected: number;
   tasksAccepted: number;
+  reviewAcceptanceRate?: number; // Percentage - only for Maker step
+  qcPassRate?: number; // Percentage - only for Reviewer step
 }
 
 export interface UserPerformanceFilters {

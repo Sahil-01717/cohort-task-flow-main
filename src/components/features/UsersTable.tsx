@@ -13,12 +13,13 @@ import { cn } from '@/lib/utils';
 
 interface UsersTableProps {
   users: UserPerformance[];
+  role?: string; // 'Maker', 'Reviewer', 'Quality Check', etc.
 }
 
 type SortField = keyof UserPerformance | null;
 type SortDirection = 'asc' | 'desc';
 
-export function UsersTable({ users }: UsersTableProps) {
+export function UsersTable({ users, role = 'Maker' }: UsersTableProps) {
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
@@ -131,16 +132,38 @@ export function UsersTable({ users }: UsersTableProps) {
                 onClick={() => handleSort('tasksAccepted')}
                 className="flex items-center hover:text-foreground"
               >
-                TASK ACCE
+                TASKS ACCEPTED
                 <SortIcon field="tasksAccepted" />
               </button>
             </TableHead>
+            {role === 'Maker' && (
+              <TableHead>
+                <button
+                  onClick={() => handleSort('reviewAcceptanceRate')}
+                  className="flex items-center hover:text-foreground"
+                >
+                  REVIEW ACCEPTANCE RATE
+                  <SortIcon field="reviewAcceptanceRate" />
+                </button>
+              </TableHead>
+            )}
+            {role === 'Reviewer' && (
+              <TableHead>
+                <button
+                  onClick={() => handleSort('qcPassRate')}
+                  className="flex items-center hover:text-foreground"
+                >
+                  QC PASS RATE
+                  <SortIcon field="qcPassRate" />
+                </button>
+              </TableHead>
+            )}
           </TableRow>
         </TableHeader>
         <TableBody>
           {sortedUsers.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+              <TableCell colSpan={role === 'Maker' || role === 'Reviewer' ? 8 : 7} className="text-center py-8 text-muted-foreground">
                 No users found
               </TableCell>
             </TableRow>
@@ -154,6 +177,20 @@ export function UsersTable({ users }: UsersTableProps) {
                 <TableCell>{user.avgHandlingTime.toFixed(1)}m</TableCell>
                 <TableCell>{user.tasksRejected}</TableCell>
                 <TableCell>{user.tasksAccepted}</TableCell>
+                {role === 'Maker' && (
+                  <TableCell>
+                    {user.reviewAcceptanceRate !== undefined 
+                      ? `${user.reviewAcceptanceRate.toFixed(1)}%` 
+                      : 'N/A'}
+                  </TableCell>
+                )}
+                {role === 'Reviewer' && (
+                  <TableCell>
+                    {user.qcPassRate !== undefined 
+                      ? `${user.qcPassRate.toFixed(1)}%` 
+                      : 'N/A'}
+                  </TableCell>
+                )}
               </TableRow>
             ))
           )}

@@ -83,17 +83,21 @@ export function UserPerformance() {
     const memberType: 'Makers' | 'Reviewer' = 
       data.workflowStep === 'Reviewer' ? 'Reviewer' : 'Makers';
 
+    // Flatten conditionGroups into conditions array for backward compatibility
+    const allConditions = data.conditionGroups.flatMap((group) => group.conditions);
+    const totalConditions = allConditions.length;
+
     const newCohort: Cohort = {
       id: newId,
       name: data.name,
-      description: data.description || `Cohort based on ${data.conditions.length} condition(s)`,
+      description: data.description || `Cohort based on ${totalConditions} condition(s)`,
       memberCount: 0, // Will be calculated
       memberType,
       dateRange: dateRangeFormatted,
       updatedAt: 'Just now',
       status: 'live',
       stepId,
-      conditions: data.conditions,
+      conditions: allConditions,
     };
 
     setCohorts([...cohorts, newCohort]);
@@ -124,6 +128,9 @@ export function UserPerformance() {
     const memberType: 'Makers' | 'Reviewer' = 
       data.workflowStep === 'Reviewer' ? 'Reviewer' : 'Makers';
 
+    // Flatten conditionGroups into conditions array for backward compatibility
+    const allConditions = data.conditionGroups.flatMap((group) => group.conditions);
+
     setCohorts(
       cohorts.map((c) =>
         c.id === cohortId
@@ -134,7 +141,7 @@ export function UserPerformance() {
               dateRange: dateRangeFormatted,
               stepId,
               memberType,
-              conditions: data.conditions,
+              conditions: allConditions,
               updatedAt: 'Just now',
             }
           : c
@@ -302,7 +309,7 @@ export function UserPerformance() {
             </div>
 
             {/* Users Table */}
-            <UsersTable users={filteredUsers} />
+            <UsersTable users={filteredUsers} role={filters.role} />
 
             {/* Pagination */}
             <div className="flex items-center justify-between">
